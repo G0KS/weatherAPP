@@ -42,6 +42,7 @@
                </div>
             </div>
          </div>
+         <div class="hl"></div>
       </div>
    </body>
 
@@ -66,16 +67,33 @@
             let wind = data.wind.speed;
             let humidity = data.main.humidity;
             let pressure = data.main.pressure;
-            console.log(climate);
+            let climateID = data.weather[0].id;
+            console.log(climateID);
+
+            if (climateID < 300) {
+               icon = `<i class="fa-solid fa-cloud-bolt"></i>`;
+            } else if (climateID < 400) {
+               icon = `<i class="fa-solid fa-cloud-rain"></i>`;
+            } else if (climateID < 600) {
+               icon = `<i class="fa-solid fa-cloud-showers-heavy"></i>`;
+            } else if (climateID < 700) {
+               icon = `<i class="fa-solid fa-snowflake"></i>`;
+            } else if (climateID < 800) {
+               icon = `<i class="fa-solid fa-smog"></i>`;
+            } else if (climateID === 800) {
+               icon = `<i class="fa-solid fa-sun"></i>`;
+            } else if (climateID < 900) {
+               icon = `<i class="fa-solid fa-cloud"></i>`;
+            }
 
             weatherDisplay.innerHTML = `
             <div class="weatherImg">
-               <i class="fa-solid fa-cloud"></i>
+               ${icon}
                <h3 class="details">${temp}°C</h3>
-            </div>
-            <marquee direction="left"
+               <marquee direction="left" width="35%" 
                >Feels like:<span class="details"> ${feelTemp}°C</span></marquee
-            >
+               >
+               </div>
             <h2>${city} | ${country}</h2>
             <div class="row">
                <div class="col">

@@ -6,8 +6,13 @@ font-family: 'Raleway', sans-serif; */
    margin: 0;
    padding: 0;
    box-sizing: border-box;
+   
 }
 
+body{
+   background: linear-gradient(90deg, hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
+
+}
 .container {
    display: flex;
    align-items: center;
@@ -19,7 +24,7 @@ font-family: 'Raleway', sans-serif; */
 .weatherCard {
    height: 600px;
    width: 60%;
-   background-color: aquamarine;
+   background-color: aqua;
    padding: 40px;
 }
 
@@ -59,7 +64,7 @@ font-family: 'Raleway', sans-serif; */
    font-size: 20px;
    background-color: aliceblue;
    border: none;
-   color: aqua;
+   color: blue;
    cursor: pointer;
 }
 
@@ -95,7 +100,7 @@ font-family: 'Raleway', sans-serif; */
 }
 
 .weatherImg {
-   margin-top: 40px;
+   margin-top: 20px;
    display: flex;
    justify-content: center;
    flex-direction: column;
@@ -123,4 +128,8 @@ font-family: 'Raleway', sans-serif; */
 .details {
    font-family: "Poppins", sans-serif;
    text-transform: capitalize;
+}
+
+.hl{
+   background-color: red;
 }
