@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Weatherify</title>
+
+      <link rel="stylesheet" href="style.css" />
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+         crossorigin="anonymous"
+         referrerpolicy="no-referrer"
+      />
+   </head>
+   <body>
+      <div class="container">
+         <div class="weatherCard">
+            <div class="cardHead">
+               <h1>Know the Weather</h1>
+               <div class="searchBar">
+                  <input
+                     type="text"
+                     id="inpData"
+                     placeholder="Enter the city:"
+                  />
+                  <button type="button" onclick="weather()">
+                     <i class="fa-solid fa-magnifying-glass"></i>
+                  </button>
+               </div>
+            </div>
+            <hr class="line" />
+            <div class="cardBody" id="weatherDisplay">
+               <div class="displayText">
+                  <h2>
+                     Sunshine is delicious, rain is refreshing, wind braces us
+                     up, snow is exhilarating; there is really no such thing as
+                     bad weather, only different kinds of good weather.
+                  </h2>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+
+   <script>
+      function mag() {
+         console.log("hihi");
+      }
+      const weather = async () => {
+         let city = inpData.value;
+         inpData.value = "";
+         const weatherData = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=8ac5c4d57ba6a4b3dfcf622700447b1e&units=metric`
+         );
+         weatherData.json().then((data) => {
+            console.log(data);
+            let temp = data.main.temp;
+            let feelTemp = data.main.feels_like;
+            let city = data.name;
+            let country = data.sys.country;
+            let climate = data.weather[0].main;
+            let climateDesc = data.weather[0].description;
+            let wind = data.wind.speed;
+            let humidity = data.main.humidity;
+            let pressure = data.main.pressure;
+            console.log(climate);
+
+            weatherDisplay.innerHTML = `
+            <div class="weatherImg">
+               <i class="fa-solid fa-cloud"></i>
+               <h3 class="details">${temp}°C</h3>
+            </div>
+            <marquee direction="left"
+               >Feels like:<span class="details"> ${feelTemp}°C</span></marquee
+            >
+            <h2>${city} | ${country}</h2>
+            <div class="row">
+               <div class="col">
+                  <h3>${climate}</h3>
+                  <p class="details">${climateDesc}</p>
+               </div>
+               <div class="col">
+                  <h3>Wind Speed</h3>
+                  <p class="details">${wind}kmph</p>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <h3>Humidity</h3>
+                  <p class="details">${humidity}%</p>
+               </div>
+               <div class="col">
+                  <h3>Pressure</h3>
+                  <p class="details">${pressure}</p>
+               </div>
+            </div>
+            `;
+         });
+      };
+   </script>
+</html>
